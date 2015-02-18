@@ -1,0 +1,99 @@
+//RReed 2/18/15  Combo - Circle Collision & Quadratic Formula Solver
+
+#include <iostream>
+using namespace std;
+#include <math.h>
+
+
+int main()
+
+{
+	Start:
+	//local variable declarations
+	double x1,y1,x2,y2,r1,r2;
+	double d, dist, sum;
+	double a, b, c;
+	char input;
+
+//Menu Choices
+	system ("cls");
+	cout<<"\nThis program will solve a quadratic equation for you or tell you if two circles collide!";
+	cout<<"\nPress '1' to solve a quadratic or '2' to check circle collision\n";
+	cin>>input;
+
+	if (input=='1')
+	{
+		//Accept Input of A, B, C of Quadratic Formula
+		cout<<"This program will solve the quadratic equation Ax^2 + Bx + C = 0 if you supply it with A,B,C "<<endl;
+		cout<<"Please give type the coefficient of the x^2 term: A= ";
+		cin>>a;
+		cout<<"\nPlease type the coefficient of the x term: B= ";
+		cin>>b;
+		cout<<"\nNow, please type the constant term: C= ";
+		cin>>c;
+		//Calculate discriminant and determine number of solutions 
+		if (b*b-4*a*c < 0)
+			cout <<"Sorry - the discriminant is negative so there are no real solutions to your equation\n"; 
+
+		else if (b*b-4*a*c ==0)
+			{
+				cout << "\nYour equation has one solution and it is ";
+				x1 = (-b + sqrt(b*b-4*a*c)/(2*a)); //Calculate single solution
+				cout << "x =  "<<x1;
+		}
+
+		else
+		{
+			x1 = (-b + sqrt(b*b-4*a*c)/(2*a));
+			x2 = (-b - sqrt(b*b-4*a*c)/(2*a));
+			cout <<"\nYour Equation has two solutions and they are: "<<x1<<" and "<<x2<<endl;
+		}
+		
+		
+		
+
+
+
+
+	}
+	else if (input=='2')
+	{
+	//get info for circle 1
+	cout<<"This program will determine if two circles collide"<<endl;
+	cout<<"\nPlease enter the x-coordinate of the center of circle 1: ";
+	cin>>x1;
+	cout<<"\nPlease enter the y-coordinate of the center of circle 1: ";
+	cin>>y1;
+	cout<<"\nEnter the radius of circle 1 : ";
+	cin>>r1;
+	// get info for circle 2
+	cout<<"\n\nNow please enter the x-coordinate of the center of circle 2: ";
+	cin>>x2;
+	cout<<"\nPlease enter the y-coordinate of the center of circle 2: ";
+	cin>>y2;
+	cout<<"\nEnter the radius of circle 2 : ";
+	cin>>r2;
+
+	//compute and display distance
+	d=((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+	dist = sqrt(d);
+	cout<<"The distance between the centers of circle 1 and circle 2 is "<< dist<<endl;
+	//compute and display the sum of the radii
+	sum=r1+r2;
+	cout<<"The sum of the radii of the two circles is "<<sum<<endl;
+
+	//Final Decision Time
+	if (dist<=sum)
+		cout<<"Since the distance is less than or equal to the sum of the radii - The circles COLLIDE"<<endl;
+	else
+		cout<<"The distance exceeds the sum of the radii ... so NO COLLISION!"<<endl;
+
+	}
+
+	else 
+		goto Start;
+	
+
+	system("pause");
+	return 0;
+}
